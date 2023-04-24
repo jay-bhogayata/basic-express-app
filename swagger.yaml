@@ -1,0 +1,101 @@
+openapi: 3.0.0
+
+info:
+  title: Social App
+  description: My first express app
+  version: 1.0.1
+
+servers:
+  - url: http://localhost:8080/api/v1
+    description: localhost version of my app
+# but i can define more then one servers here
+
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+
+paths:
+  /instagram:
+    get:
+      summary: return username , followers and follows
+      responses:
+        "200":
+          description: return an object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  followers:
+                    type: string
+                  follows:
+                    type: string
+                  date:
+                    type: string
+                    format: date-time
+  /facebook:
+    get:
+      summary: return username , followers and follows
+      responses:
+        "200":
+          description: return an object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  followers:
+                    type: string
+                  follows:
+                    type: string
+                  date:
+                    type: string
+                    format: date-time
+  /linkedin:
+    get:
+      summary: return username , followers and follows
+      responses:
+        "200":
+          description: return an object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  followers:
+                    type: string
+                  follows:
+                    type: string
+                  date:
+                    type: string
+                    format: date-time
+  /{token}:
+    get:
+      summary: return whatever in the parameter
+      parameters:
+        - name: token
+          default: 5
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: return an object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  params:
+                    type: string

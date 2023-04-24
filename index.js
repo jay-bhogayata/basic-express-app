@@ -1,7 +1,17 @@
 const express = require("express");
 const dateFormat = require("date-format");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
+const swaggerUi = require("swagger-ui-express");
+const fs = require("fs");
+const YAML = require("yaml");
+
+const file = fs.readFileSync("./swagger.yaml", "utf8");
+const swaggerDocument = YAML.parse(file);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 const PORT = process.env.PORT || 8080;
 
 app.get("/", (req, res) => {
@@ -13,7 +23,7 @@ app.get("/api/v1/instagram", (req, res) => {
     userName: "bhogayata_jay07",
     followers: 100,
     following: 97,
-    date: dateFormat("dd-mm-yy hh:mm:ss", new Date()),
+    date: dateFormat("dd-MM-yy hh:mm:ss", new Date()),
   };
   res.status(200).json(instaObj);
 });
@@ -48,5 +58,5 @@ app.use((req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  `express server is running at http://127.0.0.1:${PORT}`;
+  console.log(`express server is running at http://127.0.0.1:${PORT}`);
 });

@@ -4,7 +4,8 @@
   "description": "my first express app",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch index.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "prod": "NODE_ENV=production node index.js"
   },
   "keywords": [
@@ -13,7 +14,11 @@
   "author": "jay bhogayata",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "date-format": "^4.0.14",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22",
+    "swagger-ui-express": "^4.6.2",
+    "yaml": "^2.2.2"
   }
 }
